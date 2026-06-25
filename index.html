@@ -13,28 +13,33 @@
             --blue-notice-color: #0071bc;
             --orange-notice-color: #f7931e;
             --dark-blue-bg: #031b33;
-            --site-max-width: 100%; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
         body { background-color: #f8fafc; color: var(--interpol-text); display: flex; flex-direction: column; align-items: center; }
+        
         header { width: 100%; background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; justify-content: center; }
         .header-container { width: 100%; max-width: 1600px; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
         .logo-box { display: flex; flex-direction: column; text-decoration: none; cursor: pointer; }
         .logo-title { font-size: 24px; font-weight: 900; letter-spacing: 3px; color: var(--interpol-blue); line-height: 1; }
+        
         .nav-menu { display: flex; gap: 30px; list-style: none; align-items: center; }
         .nav-menu li a { text-decoration: none; color: var(--interpol-blue); font-size: 15px; font-weight: 700; cursor: pointer; transition: color 0.2s; }
         .nav-menu li a:hover { color: #0066cc; }
         .nav-menu li a.identify-me { color: #ff6b35; }
+        
         .hero-section { width: 100%; background: linear-gradient(rgba(3, 27, 51, 0.7), rgba(3, 27, 51, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; display: flex; justify-content: center; padding: 120px 40px; }
         .hero-container { width: 100%; max-width: 1600px; }
         .hero-content { max-width: 900px; }
         .hero-content h2 { font-size: 44px; font-weight: 800; line-height: 1.2; margin-bottom: 25px; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        
         .btn-learn-more { background: transparent; border: 2px solid white; color: white; padding: 14px 35px; font-weight: bold; font-size: 14px; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; letter-spacing: 1px; }
         .btn-learn-more:hover { background: white; color: var(--dark-blue-bg); transform: translateY(-2px); }
-        .main-container { width: 100%; max-width: 1600px; padding: 60px 40px; }
+        
+        .main-container { width: 100%; max-width: 1600px; padding: 40px 40px; }
         .section-title { font-size: 30px; font-weight: 700; margin-bottom: 35px; color: var(--interpol-blue); position: relative; padding-bottom: 12px; }
         .section-title::after { content: ""; position: absolute; left: 0; bottom: 0; width: 70px; height: 4px; background: #ff6b35; }
+        
         .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 35px; width: 100%; }
         .news-card { background: #ffffff; cursor: pointer; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         .news-card:hover { transform: translateY(-4px); box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1); }
@@ -43,6 +48,7 @@
         .news-tag { color: #ff6b35; font-size: 14px; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; }
         .news-headline { font-size: 22px; font-weight: 700; color: var(--interpol-blue); line-height: 1.4; margin-bottom: 15px; }
         .news-date { font-size: 14px; color: #718096; }
+        
         .notices-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 35px; width: 100%; }
         .notice-selector-card { display: flex; border: 1px solid #e2e8f0; background: #ffffff; border-radius: 8px; overflow: hidden; min-height: 180px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         .notice-selector-card:hover { transform: translateY(-4px); box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1); }
@@ -53,10 +59,12 @@
         .notice-text-side h3 { font-size: 20px; color: var(--interpol-blue); margin-bottom: 10px; font-weight: 700; }
         .notice-text-side p { font-size: 15px; color: #4a5568; margin-bottom: 15px; line-height: 1.5; }
         .notice-action-link { color: #ff6b35; font-size: 15px; font-weight: 700; }
-        .internal-database-section { width: 100%; max-width: 1600px; padding: 20px 40px 40px 40px; display: none; }
+        
+        .internal-database-section { width: 100%; max-width: 1600px; padding: 20px 40px 40px 40px; }
         .db-header { padding: 18px 30px; color: white; font-weight: bold; font-size: 18px; margin-bottom: 30px; letter-spacing: 1px; border-radius: 4px; }
         .db-header.red { background-color: var(--red-color); }
         .db-header.yellow { background-color: var(--yellow-color); color: #000; }
+        
         .cards-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .profile-card { background: white; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); cursor: pointer; transition: transform 0.2s; }
         .profile-card:hover { transform: scale(1.02); }
@@ -64,12 +72,14 @@
         .profile-details { padding: 25px; }
         .profile-details h4 { font-size: 19px; font-weight: 700; margin-bottom: 12px; }
         .profile-details p { font-size: 14px; margin-bottom: 8px; color: #4a5568; border-bottom: 1px solid #edf2f7; padding-bottom: 5px; }
+        
         footer { width: 100%; background-color: var(--dark-blue-bg); color: white; display: flex; justify-content: center; padding: 80px 40px; margin-top: 60px; }
         .footer-container { width: 100%; max-width: 1600px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 60px; }
         .footer-column { border-left: 4px solid #ff6b35; padding-left: 30px; }
         .footer-column h4 { font-size: 15px; color: #a0aec0; margin-bottom: 15px; text-transform: uppercase; }
         .footer-column h2 { font-size: 36px; margin-bottom: 18px; font-weight: 800; }
         .footer-column p { font-size: 16px; line-height: 1.6; color: #cbd5e0; margin-bottom: 30px; }
+        
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
         .modal-content { background: #fff; padding: 40px; max-width: 750px; width: 90%; border-radius: 8px; position: relative; }
         .modal-close { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; color: #718096; }
@@ -79,7 +89,7 @@
 
     <header>
         <div class="header-container">
-            <div class="logo-box" onclick="closeAllDatabases()">
+            <div class="logo-box" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
                 <span class="logo-title">INTERPOL</span>
                 <div style="font-size: 11px; color: #718096; font-weight: bold; letter-spacing: 2px; margin-top: 3px;">NCB PROVINCE</div>
             </div>
@@ -88,8 +98,8 @@
                 <li><a onclick="openInfoModal('crimes')">Приоритеты</a></li>
                 <li><a onclick="openInfoModal('work')">Наша работа</a></li>
                 <li><a href="#news-section">Новости</a></li>
-                <li><a onclick="openSection('red-db')">Реестр уведомлений</a></li>
-                <li><a onclick="openSection('yellow-db')" class="identify-me">ПРОПАВШИЕ</a></li>
+                <li><a href="#red-db">Реестр уведомлений</a></li>
+                <li><a href="#yellow-db" class="identify-me">ПРОПАВШИЕ</a></li>
             </ul>
         </div>
     </header>
@@ -97,66 +107,71 @@
     <div class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <h2 id="hero-title">Интерпол накрыл сеть крупных поставок наркотических веществ</h2>
-                <button class="btn-learn-more" onclick="document.getElementById('news-section').scrollIntoView({behavior: 'smooth'})" id="hero-btn">Читать новость</button>
+                <h2>Интерпол накрыл сеть крупных поставок наркотических веществ</h2>
+                <button class="btn-learn-more" onclick="document.getElementById('news-section').scrollIntoView({behavior: 'smooth'})">Читать новость</button>
             </div>
         </div>
     </div>
 
+    <!-- БЛОК НОВОСТЕЙ (Теперь точно заполняется) -->
     <div class="main-container" id="news-section">
-        <div class="section-title" id="news-section-title">Последние новости и операции</div>
+        <div class="section-title">Последние новости и операции</div>
         <div class="highlights-grid" id="news-container"></div>
     </div>
 
+    <!-- ПЛАШКИ ПЕРЕХОДА -->
     <div class="main-container">
-        <div class="section-title" id="notices-section-title">Помогите нам найти их...</div>
+        <div class="section-title">Помогите нам найти их...</div>
         <div class="notices-panel-grid">
-            <div class="notice-selector-card" onclick="openSection('red-db')">
-                <div class="notice-badge-side badge-red" id="badge-red-txt">БАЗА ОПЕРАТИВНЫХ ЗАПРОСОВ</div>
+            <div class="notice-selector-card" onclick="document.getElementById('red-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-red">БАЗА ОПЕРАТИВНЫХ ЗАПРОСОВ</div>
                 <div class="notice-text-side">
-                    <h3 id="red-card-title">МЕЖДУНАРОДНЫЕ УВЕДОМЛЕНИЯ</h3>
-                    <p id="red-card-desc">Просмотр и поиск публичных запросов о розыске (Красные, Синие, Оранжевые уведомления)</p>
-                    <div class="notice-action-link" id="red-card-action">Открыть базу данных →</div>
+                    <h3>МЕЖДУНАРОДНЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Просмотр и поиск публичных запросов о розыске (Красные, Синие, Оранжевые уведомления)</p>
+                    <div class="notice-action-link">Открыть базу данных →</div>
                 </div>
             </div>
-            <div class="notice-selector-card" onclick="openSection('yellow-db')">
-                <div class="notice-badge-side badge-yellow" id="badge-yellow-txt">ЖЕЛТОЕ УВЕДОМЛЕНИЕ</div>
+            <div class="notice-selector-card" onclick="document.getElementById('yellow-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-yellow">ЖЕЛТОЕ УВЕДОМЛЕНИЕ</div>
                 <div class="notice-text-side">
-                    <h3 id="yellow-card-title">ПРОСМОТР ЖЕЛТЫХ УВЕДОМЛЕНИЙ</h3>
-                    <p id="yellow-card-desc">Просмотр и поиск публичных запросов о пропавших без вести лицах</p>
-                    <div class="notice-action-link" id="yellow-card-action">Открыть базу данных →</div>
+                    <h3>ПРОСМОТР ЖЕЛТЫХ УВЕДОМЛЕНИЙ</h3>
+                    <p>Просмотр и поиск публичных запросов о пропавших без вести лицах</p>
+                    <div class="notice-action-link">Открыть базу данных →</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ЦЕНТРАЛЬНЫЙ РЕЕСТР (Красные, Синие, Оранжевые) -->
     <div id="red-db" class="internal-database-section">
-        <div class="db-header red" id="red-db-header">ЦЕНТРАЛЬНЫЙ РЕЕСТР МЕЖДУНАРОДНЫХ УВЕДОМЛЕНИЙ</div>
+        <div class="db-header red">ЦЕНТРАЛЬНЫЙ РЕЕСТР МЕЖДУНАРОДНЫХ УВЕДОМЛЕНИЙ</div>
         <div class="cards-list-grid" id="red-cards-container"></div>
     </div>
 
+    <!-- ЖЕЛТЫЕ УВЕДОМЛЕНИЯ -->
     <div id="yellow-db" class="internal-database-section">
-        <div class="db-header yellow" id="yellow-db-header">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ (ПРОПАВШИЕ БЕЗ ВЕСТИ)</div>
+        <div class="db-header yellow">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ (ПРОПАВШИЕ БЕЗ ВЕСТИ)</div>
         <div class="cards-list-grid" id="yellow-cards-container"></div>
     </div>
 
     <footer>
         <div class="footer-container">
             <div class="footer-column">
-                <h4 id="footer-fact1-title">Знаете ли вы?</h4>
+                <h4>Знаете ли вы?</h4>
                 <h2>196</h2>
-                <p id="footer-fact1-desc">У Интерпола 196 стран-участниц, которые обмениваются данными для эффективного проведения расследований.</p>
-                <button class="btn-learn-more" onclick="openInfoModal('fact1')" id="footer-btn1">Подробнее</button>
+                <p>У Интерпола 196 стран-участниц, которые обмениваются данными для эффективного проведения расследований.</p>
+                <button class="btn-learn-more" onclick="openInfoModal('fact1')">Подробнее</button>
             </div>
             <div class="footer-column">
-                <h4 id="footer-fact2-title">Знаете ли вы?</h4>
-                <h2 id="footer-fact2-main">Пограничный контроль</h2>
-                <p id="footer-fact2-desc">Наши базы данных помогают пограничным службам мгновенно проверять паспорта, грузы и транспортные средства.</p>
-                <button class="btn-learn-more" onclick="openInfoModal('fact2')" id="footer-btn2">Подробнее</button>
+                <h4>Знаете ли вы?</h4>
+                <h2>Пограничный контроль</h2>
+                <p>Наши базы данных помогают пограничным службам мгновенно проверять passports, грузы и транспортные средства.</p>
+                <button class="btn-learn-more" onclick="openInfoModal('fact2')">Подробнее</button>
             </div>
         </div>
     </footer>
 
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="global-modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -166,10 +181,6 @@
     </div>
 
     <script>
-        // =========================================================================
-        //  БАЗА ДАННЫХ САЙТА
-        // =========================================================================
-        
         const newsDatabase = [
             {
                 image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80", 
@@ -194,7 +205,7 @@
                 nationality: "Германия", 
                 age: 49, 
                 wantedBy: "Австрия",
-                image: "", // Прямая ссылка добавлена сюда
+                image: "", // Твое фото тут
                 details: "Разыскивается судебными органами Германии за крупное мошенничество, отмывание денег и финансовые махинации в составе организованной группы."
             },
             { 
@@ -203,7 +214,7 @@
                 nationality: "???", 
                 age: "Около 30 лет", 
                 wantedBy: "Россия",
-                image: ""https://i.ibb.co.com/rKDXBZ5P/gmk-removebg-preview.png"", 
+                image: "https://i.ibb.co.com/rKDXBZ5P/gmk-removebg-preview.png", 
                 details: "Синее уведомление (Blue Notice). Сбор дополнительных сведений, проверка связей и установление точного местонахождения лица в интересах правоохранительных органов Российской Федерации."
             },
             { 
@@ -212,7 +223,7 @@
                 nationality: "???", 
                 age: "???", 
                 wantedBy: "???",
-                image: "", // Пустое поле для фото
+                image: "", 
                 details: "Оранжевое уведомление (Orange Notice). Используется для предупреждения правоохранительных органов об угрозе общественной безопасности со стороны скрытых опасных предметов, замаскированного оружия или взрывчатых веществ."
             },
             { 
@@ -233,10 +244,6 @@
             fact1: { title: "Глобальное содружество полиции", text: "196 стран-участниц делают Интерпол крупнейшей международной организацией в мире, обеспечивая отсутствие безопасных зон для преступных элементов." },
             fact2: { title: "Интеграция систем пограничного контроля", text: "Базы данных НЦБ напрямую интегрированы в пункты пограничного контроля, помогая выявлять поддельные документы и разыскиваемых лиц при попытке пересечения границы." }
         };
-
-        // =========================================================================
-        //  ЛОГИКА СИСТЕМЫ
-        // =========================================================================
 
         const cardSvgIcon = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="32" stroke="#a0aec0" stroke-width="2"/><circle cx="50" cy="50" r="24" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3 3"/><path d="M50 12V88M12 50H88" stroke="#a0aec0" stroke-width="1.5"/><polygon points="50,30 55,44 70,44 58,53 62,68 50,59 38,68 42,53 30,44 45,44" fill="#a0aec0"/></svg>`;
 
@@ -268,7 +275,6 @@
                 let labelRegion = 'Розыск объявлен';
                 let labelStatus = 'Активный розыск';
 
-                // Цветовая разметка и статусы под новые типы уведомлений
                 if (p.type === 'red') {
                     borderClr = 'var(--red-color)';
                     labelRegion = 'Розыск объявлен';
@@ -276,7 +282,7 @@
                 } else if (p.type === 'yellow') {
                     borderClr = 'var(--yellow-color)';
                     labelRegion = 'Пропал из';
-                    labelStatus = 'Пропавший без вести лицо';
+                    labelStatus = 'Пропавшее без вести лицо';
                 } else if (p.type === 'blue') {
                     borderClr = 'var(--blue-notice-color)';
                     labelRegion = 'Запрос направлен';
@@ -305,7 +311,6 @@
                         </div>
                     </div>`;
                     
-                // Красные, Синие и Оранжевые уведомления идут в центральный реестр
                 if(p.type === 'red' || p.type === 'blue' || p.type === 'orange') {
                     if(redC) redC.innerHTML += html;
                 } else if(p.type === 'yellow') {
@@ -336,22 +341,7 @@
         }
 
         function closeModal() { document.getElementById('global-modal').style.display = 'none'; }
-        
-        function openSection(id) {
-            document.querySelectorAll('.internal-database-section').forEach(d => d.style.display = 'none');
-            const sec = document.getElementById(id);
-            if(sec) {
-                sec.style.display = 'block';
-                sec.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
 
-        function closeAllDatabases() {
-            document.querySelectorAll('.internal-database-section').forEach(d => d.style.display = 'none');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Запуск при загрузке страницы
         window.onload = function() {
             renderNews();
             renderDatabases();
