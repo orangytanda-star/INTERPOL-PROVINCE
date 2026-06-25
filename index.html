@@ -24,8 +24,6 @@
         .nav-menu li a { text-decoration: none; color: var(--interpol-blue); font-size: 15px; font-weight: 700; cursor: pointer; transition: color 0.2s; }
         .nav-menu li a:hover { color: #0066cc; }
         .nav-menu li a.identify-me { color: #ff6b35; }
-        .lang-select-container { border-left: 2px solid #e2e8f0; padding-left: 20px; display: flex; align-items: center; }
-        .lang-select-dropdown { border: none; background: transparent; font-size: 14px; font-weight: bold; color: #4a5568; cursor: pointer; outline: none; text-transform: uppercase; }
         .hero-section { width: 100%; background: linear-gradient(rgba(3, 27, 51, 0.7), rgba(3, 27, 51, 0.8)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; display: flex; justify-content: center; padding: 120px 40px; }
         .hero-container { width: 100%; max-width: 1600px; }
         .hero-content { max-width: 900px; }
@@ -90,12 +88,6 @@
                 <li><a href="#news-section">Новости</a></li>
                 <li><a onclick="openSection('red-db')">Разыскиваемые</a></li>
                 <li><a onclick="openSection('yellow-db')" class="identify-me">ПРОПАВШИЕ</a></li>
-                <li class="lang-select-container">
-                    <select class="lang-select-dropdown" id="langSelector" onchange="changeLanguage(this.value)">
-                        <option value="ru" selected>RU ▾</option>
-                        <option value="en">EN ▾</option>
-                    </select>
-                </li>
             </ul>
         </div>
     </header>
@@ -178,14 +170,18 @@
         
         const newsDatabase = [
             {
-                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80", // Ссылка на фото 1 новости
-                ru: { tag: "Оперативные новости", headline: "Операция «Inter-Port»: Контрафактные медикаменты изъяты в транзитных узлах", date: "24 июня 2026 г.", fullText: "В ходе совместной международной операции..." },
-                en: { tag: "Operational News", headline: "Operation 'Inter-Port': Counterfeit medical goods seized", date: "24 June 2026", fullText: "During the joint international operation..." }
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80", 
+                tag: "Оперативные новости", 
+                headline: "Операция «Inter-Port»: Контрафактные медикаменты изъяты в транзитных узлах", 
+                date: "24 июня 2026 г.", 
+                fullText: "В ходе совместной международной операции..."
             },
             {
-                image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80", // Ссылка на фото 2 новости
-                ru: { tag: "Киберпреступность", headline: "НЦБ Province ликвидировал серверную инфраструктуру вирусов-вымогателей", date: "18 июня 2026 г.", fullText: "Успешно завершена операция по блокировке..." },
-                en: { tag: "Cybercrime", headline: "NCB Province dismantles server infrastructure", date: "18 June 2026", fullText: "An operation has been successfully completed..." }
+                image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80", 
+                tag: "Киберпреступность", 
+                headline: "НЦБ Province ликвидировал серверную инфраструктуру вирусов-вымогателей", 
+                date: "18 июня 2026 г.", 
+                fullText: "Успешно завершена операция по блокировке..."
             }
         ];
 
@@ -193,101 +189,53 @@
             { 
                 type: "red", 
                 name: "VON KRAUSE Heinrich", 
-                natRu: "Германия", natEn: "Germany", age: 49, extraRu: "Австрия", extraEn: "Austria",
-                detailsRu: "Разыскивается судебными органами Германии за крупное мошенничество...",
-                detailsEn: "Wanted by Germany for grand fraud, organized money laundering..."
+                nationality: "Германия", 
+                age: 49, 
+                wantedBy: "Австрия",
+                details: "Разыскивается судебными органами Германии за крупное мошенничество..."
             },
             { 
                 type: "red", 
                 name: "RAMIREZ Carlos", 
-                natRu: "Мексика", natEn: "Mexico", age: 31, extraRu: "США", extraEn: "United States",
-                detailsRu: "Особо опасен. Разыскивается за организацию вооруженных налетов...",
-                detailsEn: "Highly dangerous. Wanted for armed robbery..."
+                nationality: "Мексика", 
+                age: 31, 
+                wantedBy: "США",
+                details: "Особо опасен. Разыскивается за организацию вооруженных налетов..."
             },
             { 
                 type: "yellow", 
                 name: "MELNYK Alexandra", 
-                natRu: "Украина", natEn: "Ukraine", age: 22, extraRu: "Польша", extraEn: "Poland",
-                detailsRu: "Пропала при невыясненных обстоятельствах...",
-                detailsEn: "Disappeared under suspicious circumstances..."
+                nationality: "Украина", 
+                age: 22, 
+                wantedBy: "Польша",
+                details: "Пропала при невыясненных обстоятельствах..."
             }
         ];
 
-        // =========================================================================
-        //  ЛОГИКА СИСТЕМЫ (НЕ ТРОГАТЬ БЕЗ НЕОБХОДИМОСТИ)
-        // =========================================================================
-
-        let currentLanguage = "ru";
-
         const infoPages = {
-            who: {
-                ru: { title: "О Национальном Центральном Бюро", text: "Национальное центральное бюро (НЦБ) Интерпола по Province выступает в качестве единого связующего звена..." },
-                en: { title: "About National Central Bureau", text: "The INTERPOL National Central Bureau (NCB) for Province serves..." }
-            },
-            crimes: {
-                ru: { title: "Приоритетные направления борьбы", text: "Интерпол Province фокусируется на наиболее опасных угрозах..." },
-                en: { title: "Priority Crime Areas", text: "INTERPOL Province focuses on the most critical threats..." }
-            },
-            work: {
-                ru: { title: "Как мы работаем", text: "Наша деятельность строится на защищенной системе передачи данных I-24/7..." },
-                en: { title: "How We Work", text: "Our operations rely on the secure I-24/7 global communication network..." }
-            },
-            fact1: {
-                ru: { title: "Глобальное содружество полиции", text: "196 стран-участниц делают Интерпол крупнейшей международной организацией..." },
-                en: { title: "Global Police Network", text: "With 196 member countries, INTERPOL is the world's largest..." }
-            },
-            fact2: {
-                ru: { title: "Интеграция систем пограничного контроля", text: "Базы данных НЦБ напрямую интегрированы в пункты пограничного контроля..." },
-                en: { title: "Border Control Integration", text: "NCB systems are directly integrated into Province border management..." }
-            }
+            who: { title: "О Национальном Центральном Бюро", text: "Национальное центральное бюро (НЦБ) Интерпола по Province выступает в качестве единого связующего звена..." },
+            crimes: { title: "Приоритетные направления борьбы", text: "Интерпол Province фокусируется на наиболее опасных угрозах..." },
+            work: { title: "Как мы работаем", text: "Наша деятельность строится на защищенной системе передачи данных I-24/7..." },
+            fact1: { title: "Глобальное содружество полиции", text: "196 стран-участниц делают Интерпол крупнейшей международной организацией..." },
+            fact2: { title: "Интеграция систем пограничного контроля", text: "Базы данных НЦБ напрямую интегрированы в пункты пограничного контроля..." }
         };
 
-        const uiTranslations = {
-            ru: {
-                navWho: "О нас", navCrimes: "Преступления", navWork: "Наша работа", navNews: "Новости", navWanted: "Разыскиваемые", navIdentify: "Опознать меня",
-                heroTitle: "Полицейский «хакатон» выявил сети сексуальной эксплуатации на сайтах платных подписок", heroBtn: "Читать новость", newsSectionTitle: "Последние новости и операции",
-                noticesSectionTitle: "Помогите нам найти их...", badgeRedTxt: "КРАСНОЕ УВЕДОМЛЕНИЕ", redCardTitle: "ПРОСМОТР КРАСНЫХ УВЕДОМЛЕНИЙ", redCardDesc: "Просмотр и поиск публичных запросов о розыске преступников",
-                redCardAction: "Открыть базу данных →", badgeYellowTxt: "ЖЕЛТОЕ УВЕДОМЛЕНИЕ", yellowCardTitle: "ПРОСМОТР ЖЕЛТЫХ УВЕДОМЛЕНИЙ", yellowCardDesc: "Просмотр и поиск публичных запросов о пропавших без вести лицах",
-                yellowCardAction: "Открыть базу данных →", redDbHeader: "ВНУТРЕННЯЯ СИСТЕМА PROVINCE // БАЗА КРАСНЫХ УВЕДОМЛЕНИЙ", yellowDbHeader: "ВНУТРЕННЯЯ СИСТЕМА PROVINCE // БАЗА ЖЕЛТЫХ УВЕДОМЛЕНИЙ", footerFact1Title: "Знаете ли вы?",
-                footerFact1Desc: "У Интерпола 196 стран-участниц, которые обмениваются данными для эффективного проведения расследований.", footerBtn1: "Подробнее", footerFact2Title: "Знаете ли вы?", footerFact2Main: "Пограничный контроль",
-                footerFact2Desc: "Наши базы данных помогают пограничным службам мгновенно проверять паспорта, грузы и транспортные средства.", footerBtn2: "Подробнее", lblNat: "Гражданство", lblAge: "Возраст",
-                lblBy: "Розыск объявлен", lblStatus: "Статус", lblFrom: "Пропал из", statusActive: "Активный поиск", statusMissing: "Пропавший без вести"
-            },
-            en: {
-                navWho: "Who we are", navCrimes: "Crimes", navWork: "How we work", navNews: "News", navWanted: "Wanted persons", navIdentify: "Identify Me",
-                heroTitle: "Police 'hackathon' identifies sexual exploitation networks on content subscription sites", heroBtn: "Read News", newsSectionTitle: "Latest News & Operations",
-                noticesSectionTitle: "Help us find them...", badgeRedTxt: "RED NOTICE", yellowCardAction: "Open Database →", redDbHeader: "PROVINCE INTERNAL SYSTEM // RED NOTICES DATABASE", yellowDbHeader: "PROVINCE INTERNAL SYSTEM // YELLOW NOTICES DATABASE", footerFact1Title: "Did you know?",
-                footerFact1Desc: "We have 196 member countries who work together through INTERPOL to share data related to police investigations.", footerBtn1: "Learn More", footerFact2Title: "Did you know?", footerFact2Main: "Border checks",
-                footerFact2Desc: "Our databases can help border officers screen people, goods, vehicles and vessels.", footerBtn2: "Learn More", lblNat: "Nationality", lblAge: "Age",
-                lblBy: "Wanted by", lblStatus: "Status", lblFrom: "Missing from", statusActive: "Active Search", statusMissing: "Missing Person"
-            }
-        };
+        // =========================================================================
+        //  ЛОГИКА СИСТЕМЫ
+        // =========================================================================
 
         const cardSvgIcon = `<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="32" stroke="#a0aec0" stroke-width="2"/><circle cx="50" cy="50" r="24" stroke="#a0aec0" stroke-width="1" stroke-dasharray="3 3"/><path d="M50 12V88M12 50H88" stroke="#a0aec0" stroke-width="1.5"/><polygon points="50,30 55,44 70,44 58,53 62,68 50,59 38,68 42,53 30,44 45,44" fill="#a0aec0"/></svg>`;
-
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            document.documentElement.lang = lang;
-            const t = uiTranslations[lang];
-            for (let key in t) {
-                let el = document.getElementById(key.replace(/([A-Z])/g, "-$1").toLowerCase());
-                if (el) el.innerHTML = t[key];
-            }
-            renderNews();
-            renderDatabases();
-        }
 
         function renderNews() {
             const container = document.getElementById('news-container');
             container.innerHTML = "";
             newsDatabase.forEach((item, index) => {
-                const data = item[currentLanguage];
                 container.innerHTML += `
                     <div class="news-card" onclick="openNews(${index})">
                         <img class="news-img" src="${item.image}">
                         <div class="news-body">
-                            <div><div class="news-tag">${data.tag}</div><div class="news-headline">${data.headline}</div></div>
-                            <div class="news-date">${data.date}</div>
+                            <div><div class="news-tag">${item.tag}</div><div class="news-headline">${item.headline}</div></div>
+                            <div class="news-date">${item.date}</div>
                         </div>
                     </div>`;
             });
@@ -296,23 +244,22 @@
         function renderDatabases() {
             const redC = document.getElementById('red-cards-container');
             const yellowC = document.getElementById('yellow-cards-container');
-            const t = uiTranslations[currentLanguage];
             redC.innerHTML = ""; yellowC.innerHTML = "";
 
             criminalsDatabase.forEach((p, idx) => {
-                const nat = currentLanguage === "ru" ? p.natRu : p.natEn;
-                const ext = currentLanguage === "ru" ? p.extraRu : p.extraEn;
                 const borderClr = p.type === 'red' ? 'var(--red-color)' : 'var(--yellow-color)';
+                const labelRegion = p.type === 'red' ? 'Розыск объявлен' : 'Пропал из';
+                const labelStatus = p.type === 'red' ? 'Активный поиск' : 'Пропавший без вести';
                 
                 const html = `
                     <div class="profile-card" onclick="openCriminalModal(${idx})">
                         <div class="profile-img-area" style="border-bottom:5px solid ${borderClr};">${cardSvgIcon}</div>
                         <div class="profile-details">
                             <h4>${p.name}</h4>
-                            <p><b>${t.lblNat}:</b> ${nat}</p>
-                            <p><b>${t.lblAge}:</b> ${p.age}</p>
-                            <p><b>${p.type==='red'?t.lblBy:t.lblFrom}:</b> ${ext}</p>
-                            <p><b>${t.lblStatus}:</b> ${p.type==='red'?t.statusActive:t.statusMissing}</p>
+                            <p><b>Гражданство:</b> ${p.nationality}</p>
+                            <p><b>Возраст:</b> ${p.age}</p>
+                            <p><b>${labelRegion}:</b> ${p.wantedBy}</p>
+                            <p><b>Статус:</b> ${labelStatus}</p>
                         </div>
                     </div>`;
                 if(p.type === 'red') redC.innerHTML += html; else yellowC.innerHTML += html;
@@ -320,7 +267,7 @@
         }
 
         function openNews(i) {
-            const n = newsDatabase[i][currentLanguage];
+            const n = newsDatabase[i];
             document.getElementById('modal-title').innerText = n.headline;
             document.getElementById('modal-text').innerText = n.fullText;
             document.getElementById('global-modal').style.display = 'flex';
@@ -328,14 +275,13 @@
 
         function openCriminalModal(i) {
             const p = criminalsDatabase[i];
-            const txt = p[currentLanguage === "ru" ? 'detailsRu' : 'detailsEn'];
             document.getElementById('modal-title').innerText = p.name;
-            document.getElementById('modal-text').innerText = txt;
+            document.getElementById('modal-text').innerText = p.details;
             document.getElementById('global-modal').style.display = 'flex';
         }
 
         function openInfoModal(pageKey) {
-            const data = infoPages[pageKey][currentLanguage];
+            const data = infoPages[pageKey];
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-text').innerText = data.text;
             document.getElementById('global-modal').style.display = 'flex';
@@ -355,7 +301,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        changeLanguage("ru");
+        // Инициализация сайта
+        renderNews();
+        renderDatabases();
     </script>
 </body>
 </html>
