@@ -10,6 +10,8 @@
             --interpol-text: #1c2541;
             --red-color: #b31919;
             --yellow-color: #f1b400;
+            --blue-notice-color: #0071bc;
+            --orange-notice-color: #f7931e;
             --dark-blue-bg: #031b33;
             --site-max-width: 100%; 
         }
@@ -60,7 +62,7 @@
         .profile-card:hover { transform: scale(1.02); }
         .profile-img-area { height: 240px; background: #edf2f7; display: flex; align-items: center; justify-content: center; }
         .profile-details { padding: 25px; }
-        .profile-details h4 { font-size: 19px; color: var(--interpol-blue); margin-bottom: 12px; }
+        .profile-details h4 { font-size: 19px; font-weight: 700; margin-bottom: 12px; }
         .profile-details p { font-size: 14px; margin-bottom: 8px; color: #4a5568; border-bottom: 1px solid #edf2f7; padding-bottom: 5px; }
         footer { width: 100%; background-color: var(--dark-blue-bg); color: white; display: flex; justify-content: center; padding: 80px 40px; margin-top: 60px; }
         .footer-container { width: 100%; max-width: 1600px; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 60px; }
@@ -86,7 +88,7 @@
                 <li><a onclick="openInfoModal('crimes')">Приоритеты</a></li>
                 <li><a onclick="openInfoModal('work')">Наша работа</a></li>
                 <li><a href="#news-section">Новости</a></li>
-                <li><a onclick="openSection('red-db')">Разыскиваемые</a></li>
+                <li><a onclick="openSection('red-db')">Реестр уведомлений</a></li>
                 <li><a onclick="openSection('yellow-db')" class="identify-me">ПРОПАВШИЕ</a></li>
             </ul>
         </div>
@@ -110,10 +112,10 @@
         <div class="section-title" id="notices-section-title">Помогите нам найти их...</div>
         <div class="notices-panel-grid">
             <div class="notice-selector-card" onclick="openSection('red-db')">
-                <div class="notice-badge-side badge-red" id="badge-red-txt">КРАСНОЕ УВЕДОМЛЕНИЕ</div>
+                <div class="notice-badge-side badge-red" id="badge-red-txt">БАЗА ОПЕРАТИВНЫХ ЗАПРОСОВ</div>
                 <div class="notice-text-side">
-                    <h3 id="red-card-title">ПРОСМОТР КРАСНЫХ УВЕДОМЛЕНИЙ</h3>
-                    <p id="red-card-desc">Просмотр и поиск публичных запросов о розыске преступников</p>
+                    <h3 id="red-card-title">МЕЖДУНАРОДНЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p id="red-card-desc">Просмотр и поиск публичных запросов о розыске (Красные, Синие, Оранжевые уведомления)</p>
                     <div class="notice-action-link" id="red-card-action">Открыть базу данных →</div>
                 </div>
             </div>
@@ -129,12 +131,12 @@
     </div>
 
     <div id="red-db" class="internal-database-section">
-        <div class="db-header red" id="red-db-header">КРАСНЫЕ УВЕДОМЛЕНИЯ</div>
+        <div class="db-header red" id="red-db-header">ЦЕНТРАЛЬНЫЙ РЕЕСТР МЕЖДУНАРОДНЫХ УВЕДОМЛЕНИЙ</div>
         <div class="cards-list-grid" id="red-cards-container"></div>
     </div>
 
     <div id="yellow-db" class="internal-database-section">
-        <div class="db-header yellow" id="yellow-db-header">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ</div>
+        <div class="db-header yellow" id="yellow-db-header">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ (ПРОПАВШИЕ БЕЗ ВЕСТИ)</div>
         <div class="cards-list-grid" id="yellow-cards-container"></div>
     </div>
 
@@ -165,7 +167,7 @@
 
     <script>
         // =========================================================================
-        //  БАЗА ДАННЫХ САЙТА (РЕДАКТИРУЙ ЗДЕСЬ ССЫЛКИ НА КАРТИНКИ И ТЕКСТЫ)
+        //  БАЗА ДАННЫХ САЙТА
         // =========================================================================
         
         const newsDatabase = [
@@ -174,14 +176,14 @@
                 tag: "Оперативные новости", 
                 headline: "Операция «Inter-Port»: Контрафактные медикаменты изъяты в транзитных узлах", 
                 date: "24 июня 2026 г.", 
-                fullText: "В ходе совместной международной операции..."
+                fullText: "В ходе совместной международной операции органов Интерпола были заблокированы крупные цепочки поставок нелегальных фармацевтических препаратов..."
             },
             {
                 image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80", 
                 tag: "Киберпреступность", 
                 headline: "НЦБ Province ликвидировал серверную инфраструктуру вирусов-вымогателей", 
                 date: "18 июня 2026 г.", 
-                fullText: "Успешно завершена операция по блокировке..."
+                fullText: "Успешно завершена операция по координации и блокировке серверов управления шифровальщиками на территории нескольких регионов..."
             }
         ];
 
@@ -192,15 +194,26 @@
                 nationality: "Германия", 
                 age: 49, 
                 wantedBy: "Австрия",
-                details: "Разыскивается судебными органами Германии за крупное мошенничество..."
+                image: "", // Прямая ссылка добавлена сюда
+                details: "Разыскивается судебными органами Германии за крупное мошенничество, отмывание денег и финансовые махинации в составе организованной группы."
             },
             { 
-                type: "red", 
-                name: "RAMIREZ Carlos", 
-                nationality: "Мексика", 
-                age: 31, 
-                wantedBy: "США",
-                details: "Особо опасен. Разыскивается за организацию вооруженных налетов..."
+                type: "blue", 
+                name: "Korchukin", 
+                nationality: "???", 
+                age: "Около 30 лет", 
+                wantedBy: "Россия",
+                image: ""https://i.ibb.co.com/rKDXBZ5P/gmk-removebg-preview.png"", 
+                details: "Синее уведомление (Blue Notice). Сбор дополнительных сведений, проверка связей и установление точного местонахождения лица в интересах правоохранительных органов Российской Федерации."
+            },
+            { 
+                type: "orange", 
+                name: "ИМЯ ФАМИЛИЯ (ПУСТОЙ ШАБЛОН)", 
+                nationality: "???", 
+                age: "???", 
+                wantedBy: "???",
+                image: "", // Пустое поле для фото
+                details: "Оранжевое уведомление (Orange Notice). Используется для предупреждения правоохранительных органов об угрозе общественной безопасности со стороны скрытых опасных предметов, замаскированного оружия или взрывчатых веществ."
             },
             { 
                 type: "yellow", 
@@ -208,16 +221,17 @@
                 nationality: "Украина", 
                 age: 22, 
                 wantedBy: "Польша",
-                details: "Пропала при невыясненных обстоятельствах..."
+                image: "", 
+                details: "Пропала при невыясненных обстоятельствах во время трансграничного переезда. В последний раз выходила на связь на пограничном пункте."
             }
         ];
 
         const infoPages = {
-            who: { title: "О Национальном Центральном Бюро", text: "Национальное центральное бюро (НЦБ) Интерпола по Province выступает в качестве единого связующего звена..." },
-            crimes: { title: "Приоритетные направления борьбы", text: "Интерпол Province фокусируется на наиболее опасных угрозах..." },
-            work: { title: "Как мы работаем", text: "Наша деятельность строится на защищенной системе передачи данных I-24/7..." },
-            fact1: { title: "Глобальное содружество полиции", text: "196 стран-участниц делают Интерпол крупнейшей международной организацией..." },
-            fact2: { title: "Интеграция систем пограничного контроля", text: "Базы данных НЦБ напрямую интегрированы в пункты пограничного контроля..." }
+            who: { title: "О Национальном Центральном Бюро", text: "Национальное центральное бюро (НЦБ) Интерпола по Province выступает в качестве единого связующего звена для координации международных расследований и обмена оперативной информацией между региональными и глобальными ведомствами." },
+            crimes: { title: "Приоритетные направления борьбы", text: "Интерпол Province фокусируется на наиболее опасных транснациональных угрозах: организованной преступности, нелегальных рынках, кибератаках и поиске скрывающихся беглецов." },
+            work: { title: "Как мы работаем", text: "Наша деятельность строится на защищенной системе передачи данных I-24/7. Это позволяет мгновенно отправлять запросы и получать информацию о разыскиваемых лицах из глобальных баз данных." },
+            fact1: { title: "Глобальное содружество полиции", text: "196 стран-участниц делают Интерпол крупнейшей международной организацией в мире, обеспечивая отсутствие безопасных зон для преступных элементов." },
+            fact2: { title: "Интеграция систем пограничного контроля", text: "Базы данных НЦБ напрямую интегрированы в пункты пограничного контроля, помогая выявлять поддельные документы и разыскиваемых лиц при попытке пересечения границы." }
         };
 
         // =========================================================================
@@ -228,6 +242,7 @@
 
         function renderNews() {
             const container = document.getElementById('news-container');
+            if(!container) return;
             container.innerHTML = "";
             newsDatabase.forEach((item, index) => {
                 container.innerHTML += `
@@ -244,25 +259,58 @@
         function renderDatabases() {
             const redC = document.getElementById('red-cards-container');
             const yellowC = document.getElementById('yellow-cards-container');
-            redC.innerHTML = ""; yellowC.innerHTML = "";
+            
+            if(redC) redC.innerHTML = ""; 
+            if(yellowC) yellowC.innerHTML = "";
 
             criminalsDatabase.forEach((p, idx) => {
-                const borderClr = p.type === 'red' ? 'var(--red-color)' : 'var(--yellow-color)';
-                const labelRegion = p.type === 'red' ? 'Розыск объявлен' : 'Пропал из';
-                const labelStatus = p.type === 'red' ? 'Активный поиск' : 'Пропавший без вести';
+                let borderClr = 'var(--red-color)';
+                let labelRegion = 'Розыск объявлен';
+                let labelStatus = 'Активный розыск';
+
+                // Цветовая разметка и статусы под новые типы уведомлений
+                if (p.type === 'red') {
+                    borderClr = 'var(--red-color)';
+                    labelRegion = 'Розыск объявлен';
+                    labelStatus = 'Красное уведомление (Задержание)';
+                } else if (p.type === 'yellow') {
+                    borderClr = 'var(--yellow-color)';
+                    labelRegion = 'Пропал из';
+                    labelStatus = 'Пропавший без вести лицо';
+                } else if (p.type === 'blue') {
+                    borderClr = 'var(--blue-notice-color)';
+                    labelRegion = 'Запрос направлен';
+                    labelStatus = 'Синее уведомление (Сбор данных)';
+                } else if (p.type === 'orange') {
+                    borderClr = 'var(--orange-notice-color)';
+                    labelRegion = 'Орган-инициатор';
+                    labelStatus = 'Оранжевое уведомление (Угроза)';
+                }
+                
+                const imageContent = p.image 
+                    ? `<img src="${p.image}" style="width: 100%; height: 100%; object-fit: cover;">` 
+                    : cardSvgIcon;
                 
                 const html = `
                     <div class="profile-card" onclick="openCriminalModal(${idx})">
-                        <div class="profile-img-area" style="border-bottom:5px solid ${borderClr};">${cardSvgIcon}</div>
+                        <div class="profile-img-area" style="border-bottom:5px solid ${borderClr}; overflow: hidden; background: #edf2f7; display: flex; align-items: center; justify-content: center;">
+                            ${imageContent}
+                        </div>
                         <div class="profile-details">
-                            <h4>${p.name}</h4>
+                            <h4 style="color: ${borderClr === 'var(--yellow-color)' ? '#b38600' : borderClr};">${p.name}</h4>
                             <p><b>Гражданство:</b> ${p.nationality}</p>
                             <p><b>Возраст:</b> ${p.age}</p>
                             <p><b>${labelRegion}:</b> ${p.wantedBy}</p>
-                            <p><b>Статус:</b> ${labelStatus}</p>
+                            <p><b>Статус:</b> <span style="color: ${borderClr === 'var(--yellow-color)' ? '#b38600' : borderClr}; font-weight: bold;">${labelStatus}</span></p>
                         </div>
                     </div>`;
-                if(p.type === 'red') redC.innerHTML += html; else yellowC.innerHTML += html;
+                    
+                // Красные, Синие и Оранжевые уведомления идут в центральный реестр
+                if(p.type === 'red' || p.type === 'blue' || p.type === 'orange') {
+                    if(redC) redC.innerHTML += html;
+                } else if(p.type === 'yellow') {
+                    if(yellowC) yellowC.innerHTML += html;
+                }
             });
         }
 
@@ -292,8 +340,10 @@
         function openSection(id) {
             document.querySelectorAll('.internal-database-section').forEach(d => d.style.display = 'none');
             const sec = document.getElementById(id);
-            sec.style.display = 'block';
-            sec.scrollIntoView({ behavior: 'smooth' });
+            if(sec) {
+                sec.style.display = 'block';
+                sec.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function closeAllDatabases() {
@@ -301,9 +351,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Инициализация сайта
-        renderNews();
-        renderDatabases();
+        // Запуск при загрузке страницы
+        window.onload = function() {
+            renderNews();
+            renderDatabases();
+        };
     </script>
 </body>
 </html>
