@@ -85,11 +85,11 @@
             </div>
             <ul class="nav-menu">
                 <li><a onclick="openInfoModal('who')">О нас</a></li>
-                <li><a onclick="openInfoModal('crimes')">Преступления</a></li>
+                <li><a onclick="openInfoModal('crimes')">Приоритеты</a></li>
                 <li><a onclick="openInfoModal('work')">Наша работа</a></li>
                 <li><a href="#news-section">Новости</a></li>
                 <li><a onclick="openSection('red-db')">Разыскиваемые</a></li>
-                <li><a onclick="openSection('yellow-db')" class="identify-me">Опознать меня</a></li>
+                <li><a onclick="openSection('yellow-db')" class="identify-me">ПРОПАВШИЕ</a></li>
                 <li class="lang-select-container">
                     <select class="lang-select-dropdown" id="langSelector" onchange="changeLanguage(this.value)">
                         <option value="ru" selected>RU ▾</option>
@@ -103,7 +103,7 @@
     <div class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <h2 id="hero-title">Полицейский «хакатон» выявил сети сексуальной эксплуатации на сайтах платных подписок</h2>
+                <h2 id="hero-title">Интерпол накрыл сеть крупных поставок наркотических веществ</h2>
                 <button class="btn-learn-more" onclick="document.getElementById('news-section').scrollIntoView({behavior: 'smooth'})" id="hero-btn">Читать новость</button>
             </div>
         </div>
@@ -137,12 +137,12 @@
     </div>
 
     <div id="red-db" class="internal-database-section">
-        <div class="db-header red" id="red-db-header">БАЗА КРАСНЫХ УВЕДОМЛЕНИЙ</div>
+        <div class="db-header red" id="red-db-header">КРАСНЫЕ УВЕДОМЛЕНИЯ</div>
         <div class="cards-list-grid" id="red-cards-container"></div>
     </div>
 
     <div id="yellow-db" class="internal-database-section">
-        <div class="db-header yellow" id="yellow-db-header">БАЗА ЖЕЛТЫХ УВЕДОМЛЕНИЙ</div>
+        <div class="db-header yellow" id="yellow-db-header">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ</div>
         <div class="cards-list-grid" id="yellow-cards-container"></div>
     </div>
 
