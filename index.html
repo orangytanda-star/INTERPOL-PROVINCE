@@ -8,11 +8,17 @@
         :root {
             --interpol-blue: #003366;
             --interpol-text: #1c2541;
-            --red-color: #b31919;
-            --yellow-color: #f1b400;
-            --blue-notice-color: #0071bc;
-            --orange-notice-color: #f7931e;
             --dark-blue-bg: #031b33;
+            
+            /* Цвета 8 типов международных уведомлений */
+            --red-color: #b31919;
+            --blue-notice-color: #0071bc;
+            --green-notice-color: #2e7d32;
+            --yellow-color: #f1b400;
+            --orange-notice-color: #f7931e;
+            --black-notice-color: #212121;
+            --purple-notice-color: #6a1b9a;
+            --special-notice-color: #1565c0;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
@@ -23,8 +29,8 @@
         .logo-box { display: flex; flex-direction: column; text-decoration: none; cursor: pointer; }
         .logo-title { font-size: 24px; font-weight: 900; letter-spacing: 3px; color: var(--interpol-blue); line-height: 1; }
         
-        .nav-menu { display: flex; gap: 25px; list-style: none; align-items: center; }
-        .nav-menu li a { text-decoration: none; color: var(--interpol-blue); font-size: 14px; font-weight: 700; cursor: pointer; transition: color 0.2s; }
+        .nav-menu { display: flex; gap: 15px; list-style: none; align-items: center; }
+        .nav-menu li a { text-decoration: none; color: var(--interpol-blue); font-size: 13px; font-weight: 700; cursor: pointer; transition: color 0.2s; }
         .nav-menu li a:hover { color: #0066cc; }
         .nav-menu li a.identify-me { color: #ff6b35; }
         
@@ -49,20 +55,24 @@
         .news-headline { font-size: 22px; font-weight: 700; color: var(--interpol-blue); line-height: 1.4; margin-bottom: 15px; }
         .news-date { font-size: 14px; color: #718096; }
         
-        /* Сетка для плашек выбора */
+        /* Сетка для 8 плашек выбора */
         .notices-panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; width: 100%; }
         .notice-selector-card { display: flex; border: 1px solid #e2e8f0; background: #ffffff; border-radius: 8px; overflow: hidden; min-height: 150px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         .notice-selector-card:hover { transform: translateY(-4px); box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1); }
         .notice-badge-side { width: 140px; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 15px; font-weight: 800; font-size: 11px; letter-spacing: 1px; }
         
-        /* Цвета плашек */
+        /* Классы фонов для 8 плашек */
         .badge-red { background-color: var(--red-color); }
         .badge-blue { background-color: var(--blue-notice-color); }
-        .badge-orange { background-color: var(--orange-notice-color); }
+        .badge-green { background-color: var(--green-notice-color); }
         .badge-yellow { background-color: var(--yellow-color); color: #000; }
+        .badge-orange { background-color: var(--orange-notice-color); }
+        .badge-black { background-color: var(--black-notice-color); }
+        .badge-purple { background-color: var(--purple-notice-color); }
+        .badge-special { background-color: var(--special-notice-color); }
         
         .notice-text-side { padding: 20px; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
-        .notice-text-side h3 { font-size: 17px; color: var(--interpol-blue); margin-bottom: 6px; font-weight: 700; }
+        .notice-text-side h3 { font-size: 16px; color: var(--interpol-blue); margin-bottom: 6px; font-weight: 700; }
         .notice-text-side p { font-size: 13px; color: #4a5568; margin-bottom: 10px; line-height: 1.4; }
         .notice-action-link { color: #ff6b35; font-size: 13px; font-weight: 700; }
         
@@ -72,8 +82,12 @@
         
         .db-header.red { background-color: var(--red-color); }
         .db-header.blue { background-color: var(--blue-notice-color); }
-        .db-header.orange { background-color: var(--orange-notice-color); }
+        .db-header.green { background-color: var(--green-notice-color); }
         .db-header.yellow { background-color: var(--yellow-color); color: #000; }
+        .db-header.orange { background-color: var(--orange-notice-color); }
+        .db-header.black { background-color: var(--black-notice-color); }
+        .db-header.purple { background-color: var(--purple-notice-color); }
+        .db-header.special { background-color: var(--special-notice-color); }
         
         .cards-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .profile-card { background: white; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); cursor: pointer; transition: transform 0.2s; }
@@ -105,13 +119,15 @@
             </div>
             <ul class="nav-menu">
                 <li><a onclick="openInfoModal('who')">О нас</a></li>
-                <li><a onclick="openInfoModal('crimes')">Приоритеты</a></li>
-                <li><a onclick="openInfoModal('work')">Наша работа</a></li>
                 <li><a href="#news-section">Новости</a></li>
                 <li><a href="#red-db">Красные</a></li>
                 <li><a href="#blue-db">Синие</a></li>
+                <li><a href="#green-db">Зеленые</a></li>
+                <li><a href="#yellow-db">Желтые</a></li>
                 <li><a href="#orange-db">Оранжевые</a></li>
-                <li><a href="#yellow-db" class="identify-me">ПРОПАВШИЕ</a></li>
+                <li><a href="#black-db">Черные</a></li>
+                <li><a href="#purple-db">Фиолетовые</a></li>
+                <li><a href="#special-db" class="identify-me">Специальные</a></li>
             </ul>
         </div>
     </header>
@@ -125,13 +141,11 @@
         </div>
     </div>
 
-    <!-- БЛОК НОВОСТЕЙ -->
     <div class="main-container" id="news-section">
         <div class="section-title">Последние новости и операции</div>
         <div class="highlights-grid" id="news-container"></div>
     </div>
 
-    <!-- ПЛАШКИ ПЕРЕХОДА (ТЕПЕРЬ ИХ 4) -->
     <div class="main-container">
         <div class="section-title">Категории международных запросов</div>
         <div class="notices-panel-grid">
@@ -154,11 +168,11 @@
                 </div>
             </div>
 
-            <div class="notice-selector-card" onclick="document.getElementById('orange-db').scrollIntoView({behavior: 'smooth'})">
-                <div class="notice-badge-side badge-orange">ORANGE NOTICE</div>
+            <div class="notice-selector-card" onclick="document.getElementById('green-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-green">GREEN NOTICE</div>
                 <div class="notice-text-side">
-                    <h3>ОРАНЖЕВЫЕ УВЕДОМЛЕНИЯ</h3>
-                    <p>Предупреждения о скрытых угрозах общественной безопасности и материалах.</p>
+                    <h3>ЗЕЛЕНЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Предупреждения о лицах, совершивших преступления и склонных к рецидиву.</p>
                     <div class="notice-action-link">Перейти к реестру →</div>
                 </div>
             </div>
@@ -172,31 +186,83 @@
                 </div>
             </div>
 
+            <div class="notice-selector-card" onclick="document.getElementById('orange-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-orange">ORANGE NOTICE</div>
+                <div class="notice-text-side">
+                    <h3>ОРАНЖЕВЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Предупреждения о скрытых угрозах общественной безопасности, оружии или взрывчатке.</p>
+                    <div class="notice-action-link">Перейти к реестру →</div>
+                </div>
+            </div>
+
+            <div class="notice-selector-card" onclick="document.getElementById('black-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-black">BLACK NOTICE</div>
+                <div class="notice-text-side">
+                    <h3>ЧЕРНЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Поиск и идентификация неопознанных человеческих останков.</p>
+                    <div class="notice-action-link">Перейти к реестру →</div>
+                </div>
+            </div>
+
+            <div class="notice-selector-card" onclick="document.getElementById('purple-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-purple">PURPLE NOTICE</div>
+                <div class="notice-text-side">
+                    <h3>ФИОЛЕТОВЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Оповещение о схемах, методах, объектах и устройствах, используемых преступниками.</p>
+                    <div class="notice-action-link">Перейти к реестру →</div>
+                </div>
+            </div>
+
+            <div class="notice-selector-card" onclick="document.getElementById('special-db').scrollIntoView({behavior: 'smooth'})">
+                <div class="notice-badge-side badge-special">SPECIAL NOTICE</div>
+                <div class="notice-text-side">
+                    <h3>СПЕЦИАЛЬНЫЕ УВЕДОМЛЕНИЯ</h3>
+                    <p>Совместные уведомления СБ ООН и Интерпола в отношении групп или лиц под санкциями.</p>
+                    <div class="notice-action-link">Перейти к реестру →</div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- КРАСНЫЙ РЕЕСТР -->
     <div id="red-db" class="internal-database-section">
-        <div class="db-header red">КРАСНЫЕ УВЕДОМЛЕНИЯ (МЕЖДУНАРОДНЫЙ РОЗЫСК)</div>
+        <div class="db-header red">КРАСНЫЕ УВЕДОМЛЕНИЯ (МЕЖДУНАРОДНЫЙ РОЗЫСК НА ЗАДЕРЖАНИЕ)</div>
         <div class="cards-list-grid" id="red-cards-container"></div>
     </div>
 
-    <!-- СИНИЙ РЕЕСТР -->
     <div id="blue-db" class="internal-database-section">
-        <div class="db-header blue">СИНИЕ УВЕДОМЛЕНИЯ (СБОР ИНФОРМАЦИИ)</div>
+        <div class="db-header blue">СИНИЕ УВЕДОМЛЕНИЯ (СБОР ИНФОРМАЦИИ И СВЕДЕНИЙ)</div>
         <div class="cards-list-grid" id="blue-cards-container"></div>
     </div>
 
-    <!-- ОРАНЖЕВЫЙ РЕЕСТР -->
+    <div id="green-db" class="internal-database-section">
+        <div class="db-header green">ЗЕЛЕНЫЕ УВЕДОМЛЕНИЯ (КОНТРОЛЬ ЗА ПРЕСТУПНИКАМИ)</div>
+        <div class="cards-list-grid" id="green-cards-container"></div>
+    </div>
+
+    <div id="yellow-db" class="internal-database-section">
+        <div class="db-header yellow">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ (ПРОПАВШИЕ БЕЗ ВЕСТИ ЛИЦА)</div>
+        <div class="cards-list-grid" id="yellow-cards-container"></div>
+    </div>
+
     <div id="orange-db" class="internal-database-section">
-        <div class="db-header orange">ОРАНЖЕВЫЕ УВЕДОМЛЕНИЯ (СКРЫТЫЕ УГРОЗЫ)</div>
+        <div class="db-header orange">ОРАНЖЕВЫЕ УВЕДОМЛЕНИЯ (СКРЫТЫЕ УГРОЗЫ И МАТЕРИАЛЫ)</div>
         <div class="cards-list-grid" id="orange-cards-container"></div>
     </div>
 
-    <!-- ЖЕЛТЫЙ РЕЕСТР -->
-    <div id="yellow-db" class="internal-database-section">
-        <div class="db-header yellow">ЖЕЛТЫЕ УВЕДОМЛЕНИЯ (ПРОПАВШИЕ БЕЗ ВЕСТИ)</div>
-        <div class="cards-list-grid" id="yellow-cards-container"></div>
+    <div id="black-db" class="internal-database-section">
+        <div class="db-header black">ЧЕРНЫЕ УВЕДОМЛЕНИЯ (НЕОПОЗНАННЫЕ ТЕЛА)</div>
+        <div class="cards-list-grid" id="black-cards-container"></div>
+    </div>
+
+    <div id="purple-db" class="internal-database-section">
+        <div class="db-header purple">ФИОЛЕТОВЫЕ УВЕДОМЛЕНИЯ (МОДУС ОПЕРАНДИ / СХЕМЫ ПРЕСТУПЛЕНИЙ)</div>
+        <div class="cards-list-grid" id="purple-cards-container"></div>
+    </div>
+
+    <div id="special-db" class="internal-database-section">
+        <div class="db-header special">СПЕЦИАЛЬНЫЕ ЗАПРОСЫ (СОВЕТ БЕЗОПАСНОСТИ ООН / ИНТЕРПОЛ)</div>
+        <div class="cards-list-grid" id="special-cards-container"></div>
     </div>
 
     <footer>
@@ -216,7 +282,6 @@
         </div>
     </footer>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="global-modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -239,19 +304,20 @@
                 tag: "Киберпреступность", 
                 headline: "НЦБ РФ выявил похитителей маленькой девочки из США.", 
                 date: "18 июня 2026 г.", 
-                fullText: "Дочь Еллизаветы Трейс украли в штате Вашингтон, после продали в рабство в РФ..."
+                fullText: "Дочь Елизаветы Трейс украли в штате Вашингтон, после продали в рабство в РФ..."
             }
         ];
 
+        // База данных, содержащая все 8 видов уведомлений (заполнена шаблонами)
         const criminalsDatabase = [
             { 
                 type: "red", 
                 name: "Pytin2988", 
                 nationality: "Русский", 
-                age: ~20, 
+                age: "~20", 
                 wantedBy: "США, РФ",
                 image: "", 
-                details: "Разыскивается за распространение наркотических вещевств в крупном размере."
+                details: "Разыскивается за распространение наркотических веществ в крупном размере."
             },
             { 
                 type: "blue", 
@@ -262,6 +328,60 @@
                 image: "https://i.ibb.co.com/rKDXBZ5P/gmk-removebg-preview.png", 
                 details: "Синее уведомление (Blue Notice). Сбор дополнительных сведений, проверка связей и установление точного местонахождения лица в интересах правоохранительных органов Российской Федерации."
             },
+            {
+                type: "green",
+                name: "ШАБЛОН ЗЕЛЕНОГО УВЕДОМЛЕНИЯ",
+                nationality: "???",
+                age: "??",
+                wantedBy: "???",
+                image: "",
+                details: "Зеленое уведомление (Green Notice). Оповещение правоохранительных органов о лицах, совершивших преступления и представляющих рецидивную опасность для общественности в других странах."
+            },
+            {
+                type: "yellow",
+                name: "MELNYK Alexandra",
+                nationality: "Украина",
+                age: 22,
+                wantedBy: "Польша",
+                image: "",
+                details: "Пропала при невыясненных обстоятельствах во время трансграничного переезда. В последний раз выходила на связь на пограничном пункте."
+            },
+            {
+                type: "orange",
+                name: "ШАБЛОН ОРАНЖЕВОГО УВЕДОМЛЕНИЯ",
+                nationality: "???",
+                age: "??",
+                wantedBy: "???",
+                image: "",
+                details: "Оранжевое уведомление (Orange Notice). Предупреждение о действиях, вещах, скрытых угрозах или опасных материалах, которые представляют прямую опасность для органов правопорядка."
+            },
+            {
+                type: "black",
+                name: "ДЕЛО №-8832 (НЕОПОЗНАННОЕ ТЕЛО)",
+                nationality: "Неизвестно",
+                age: "Примерно 35-40",
+                wantedBy: "Регион Province",
+                image: "",
+                details: "Черное уведомление (Black Notice). Запрос на установление личных данных и идентификацию обнаруженных человеческих останков."
+            },
+            {
+                type: "purple",
+                name: "КРИМИНАЛЬНАЯ СХЕМА (МОДУС ОПЕРАНДИ)",
+                nationality: "Транснациональная",
+                age: "—",
+                wantedBy: "Интерпол",
+                image: "",
+                details: "Фиолетовое уведомление (Purple Notice). Описание сложной криминальной схемы, технических методов, замаскированных тайников или модуса операнди, используемых организованными группами."
+            },
+            {
+                type: "special",
+                name: "САНКЦИОННАЯ ГРУППА / ЛИЦО",
+                nationality: "???",
+                age: "??",
+                wantedBy: "СБ ООН",
+                image: "",
+                details: "Специальное уведомление (UN Security Council Special Notice). Информирование о лицах и организациях, являющихся объектами международных санкций со стороны Совета Безопасности Организации Объединенных Наций."
+            }
         ];
 
         const infoPages = {
@@ -291,42 +411,78 @@
         }
 
         function renderDatabases() {
-            const redC = document.getElementById('red-cards-container');
-            const blueC = document.getElementById('blue-cards-container');
-            const orangeC = document.getElementById('orange-cards-container');
-            const yellowC = document.getElementById('yellow-cards-container');
+            // Маппинг контейнеров под все 8 типов баз
+            const containers = {
+                red: document.getElementById('red-cards-container'),
+                blue: document.getElementById('blue-cards-container'),
+                green: document.getElementById('green-cards-container'),
+                yellow: document.getElementById('yellow-cards-container'),
+                orange: document.getElementById('orange-cards-container'),
+                black: document.getElementById('black-cards-container'),
+                purple: document.getElementById('purple-cards-container'),
+                special: document.getElementById('special-cards-container')
+            };
             
-            if(redC) redC.innerHTML = ""; 
-            if(blueC) blueC.innerHTML = ""; 
-            if(orangeC) orangeC.innerHTML = ""; 
-            if(yellowC) yellowC.innerHTML = "";
+            // Очищаем все контейнеры перед рендером
+            for (let key in containers) {
+                if (containers[key]) containers[key].innerHTML = "";
+            }
 
             criminalsDatabase.forEach((p, idx) => {
                 let borderClr = 'var(--red-color)';
                 let labelRegion = 'Розыск объявлен';
                 let labelStatus = 'Активный розыск';
 
-                if (p.type === 'red') {
-                    borderClr = 'var(--red-color)';
-                    labelRegion = 'Розыск объявлен';
-                    labelStatus = 'Красное уведомление (Задержание)';
-                } else if (p.type === 'yellow') {
-                    borderClr = 'var(--yellow-color)';
-                    labelRegion = 'Пропал из';
-                    labelStatus = 'Пропавшее без вести лицо';
-                } else if (p.type === 'blue') {
-                    borderClr = 'var(--blue-notice-color)';
-                    labelRegion = 'Запрос направлен';
-                    labelStatus = 'Синее уведомление (Сбор данных)';
-                } else if (p.type === 'orange') {
-                    borderClr = 'var(--orange-notice-color)';
-                    labelRegion = 'Орган-инициатор';
-                    labelStatus = 'Оранжевое уведомление (Угроза)';
+                // Динамическая обработка каждого из 8 нотисов
+                switch (p.type) {
+                    case 'red':
+                        borderClr = 'var(--red-color)';
+                        labelRegion = 'Розыск объявлен';
+                        labelStatus = 'Красное уведомление (Задержание)';
+                        break;
+                    case 'blue':
+                        borderClr = 'var(--blue-notice-color)';
+                        labelRegion = 'Запрос направлен';
+                        labelStatus = 'Синее уведомление (Сбор данных)';
+                        break;
+                    case 'green':
+                        borderClr = 'var(--green-notice-color)';
+                        labelRegion = 'Контроль ведомства';
+                        labelStatus = 'Зеленое уведомление (Предупреждение)';
+                        break;
+                    case 'yellow':
+                        borderClr = 'var(--yellow-color)';
+                        labelRegion = 'Пропал из';
+                        labelStatus = 'Желтое уведомление (Пропавший без вести)';
+                        break;
+                    case 'orange':
+                        borderClr = 'var(--orange-notice-color)';
+                        labelRegion = 'Орган-инициатор';
+                        labelStatus = 'Оранжевое уведомление (Угроза)';
+                        break;
+                    case 'black':
+                        borderClr = 'var(--black-notice-color)';
+                        labelRegion = 'Обнаружен в';
+                        labelStatus = 'Черное уведомление (Неопознанные останки)';
+                        break;
+                    case 'purple':
+                        borderClr = 'var(--purple-notice-color)';
+                        labelRegion = 'Регистрация схемы';
+                        labelStatus = 'Фиолетовое уведомление (Модус операнди)';
+                        break;
+                    case 'special':
+                        borderClr = 'var(--special-notice-color)';
+                        labelRegion = 'Инициатор санкций';
+                        labelStatus = 'Специальный запрос СБ ООН';
+                        break;
                 }
                 
                 const imageContent = p.image 
                     ? `<img src="${p.image}" style="width: 100%; height: 100%; object-fit: cover;">` 
                     : cardSvgIcon;
+                
+                // Подкрашиваем желтый текст на карточках темнее, чтобы он не сливался со светлым фоном
+                const textHighlightColor = borderClr === 'var(--yellow-color)' ? '#b38600' : borderClr;
                 
                 const html = `
                     <div class="profile-card" onclick="openCriminalModal(${idx})">
@@ -334,19 +490,18 @@
                             ${imageContent}
                         </div>
                         <div class="profile-details">
-                            <h4 style="color: ${borderClr === 'var(--yellow-color)' ? '#b38600' : borderClr};">${p.name}</h4>
+                            <h4 style="color: ${textHighlightColor};">${p.name}</h4>
                             <p><b>Гражданство:</b> ${p.nationality}</p>
                             <p><b>Возраст:</b> ${p.age}</p>
                             <p><b>${labelRegion}:</b> ${p.wantedBy}</p>
-                            <p><b>Статус:</b> <span style="color: ${borderClr === 'var(--yellow-color)' ? '#b38600' : borderClr}; font-weight: bold;">${labelStatus}</span></p>
+                            <p><b>Статус:</b> <span style="color: ${textHighlightColor}; font-weight: bold;">${labelStatus}</span></p>
                         </div>
                     </div>`;
                     
-                // Точечно раскладываем строго по своим контейнерам
-                if(p.type === 'red' && redC) redC.innerHTML += html;
-                else if(p.type === 'blue' && blueC) blueC.innerHTML += html;
-                else if(p.type === 'orange' && orangeC) orangeC.innerHTML += html;
-                else if(p.type === 'yellow' && yellowC) yellowC.innerHTML += html;
+                // Строгая сортировка по индивидуальным контейнерам
+                if (containers[p.type]) {
+                    containers[p.type].innerHTML += html;
+                }
             });
         }
 
